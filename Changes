@@ -1,0 +1,3 @@
+0.01
+- Initial Release
+- implement OO interface, an ->next() method that works perfectly.
