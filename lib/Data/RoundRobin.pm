@@ -1,7 +1,17 @@
 package Data::RoundRobin;
+use 5.006001;
 use strict;
 use warnings;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
+
+use overload
+    'eq' => \&next,
+    'ne' => \&next,
+    "cmp" => \&next,
+    "<=>" => \&next,
+    '+' => \&numerify,
+    '==' => \&numerify,
+    '""' => \&next;
 
 sub new {
     my ($class, @arr) = @_;
@@ -21,13 +31,22 @@ sub next {
     return $r;
 }
 
+sub numerify {
+    my $self   = shift;
+    my $other  = shift || 0;
+    my $value  = $self->next;
+    $value =~ s/^(\d*).*$/$1/;
+    $value ||= 0;
+    return $value + $other;
+}
+
 1;
 
 __END__
 
 =head1 NAME
 
-  Data::RoundRobin - Serve data in a round robin manner.
+Data::RoundRobin - Serve data in a round robin manner.
 
 =head1 SYNOPSIS
 
@@ -45,6 +64,12 @@ __END__
   while(my $elem = $rr->next) {
      ...
   }
+
+  # Operator overloading
+  my $rr = Data::RoundRobin->new(qw(a b));
+  print $rr; # a
+  print $rr; # b
+  print $rr; # a
 
 =head1 DESCRIPTION
 
@@ -64,11 +89,16 @@ Constructor, a list should be given to construct a C<Data::RoundRobin> object.
 
 Retrieve next value of this instance.
 
+=item numerify
+
+Retrieve next numerifed value of this instance. Invoked by Perl's
+operator overloadding mechanism.
+
 =back
 
 =head1 COPYRIGHT
 
-Copyright 2006 by Kang-min Liu <gugod@gugod.org>.
+Copyright 2006 by Kang-min Liu <gugod@gugod.org>
 
 This program is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

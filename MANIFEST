@@ -16,4 +16,8 @@ t/00.use.t
 t/01.simple.t
 t/02.pod.t
 t/03.podcover.t
+t/04.stringify.t
+t/05.eq.t
+t/06.ne.t
+t/07.overload.t
 SIGNATURE                                Public-key signature (added by MakeMaker)
