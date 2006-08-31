@@ -20,4 +20,3 @@ t/04.stringify.t
 t/05.eq.t
 t/06.ne.t
 t/07.overload.t
-SIGNATURE                                Public-key signature (added by MakeMaker)

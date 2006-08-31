@@ -1,14 +1,15 @@
-name: Data-RoundRobin
-version: 0.02
 abstract: Serve data in a round robin manner.
 author: Kang-min Liu <gugod@gugod.org>
-license: perl
-distribution_type: module
-build_requires:
+build_requires: 
   Test::More: 0
-requires:
-  perl: 5.6.1
-no_index:
-  directory:
+distribution_type: module
+generated_by: Module::Install version 0.64
+license: perl
+name: Data-RoundRobin
+no_index: 
+  directory: 
     - inc
-generated_by: Module::Install version 0.45
+    - t
+requires: 
+  perl: 5.6.1
+version: 0.03
